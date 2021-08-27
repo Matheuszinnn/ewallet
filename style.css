@@ -21,13 +21,13 @@ body {
   margin: 0 auto;
 }
 
-#popupbackgroud {
+#popupbackground {
   background-color: rgba(0, 0, 0, 0.726);
   width: 100vw;
   height: 100vh;
   z-index: 5;
   position: absolute;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
 }
@@ -35,14 +35,63 @@ body {
 #popup {
   width: 500px;
   padding: 15px;
-  background-color: #f0f2f5;
   border-radius: 15px;
+  background-color: #f0f2f5;
+  margin: auto;
 }
+#popup form{
+  display: flex;
+  align-items: initial;
+  flex-direction: column;
+}
+
+#popup form div{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#popup form a{
+  text-align: end;
+}
+
+form input, form select, form button {
+  padding: 10px;
+  border-radius: 5px;
+  margin: auto 5px;
+  margin-top: 10px;
+  flex:1;
+  border: 1px solid transparent;
+  transition: border-color linear 0.3s;
+}
+
+form input:focus,
+form select:focus{
+  border-color: #7c0061;
+}
+
+form label{
+  font-weight: 500;
+  color: #969cb2;
+  font-size: 14px;
+}
+
+form button{
+  background-color: #7c0061;
+  color: #fff;
+  margin-top:30px;
+  transition: background linear 0.2s;
+}
+
+form button:hover{
+  background-color: #570044;
+}
+
 
 #header {
   width: 100%;
   height: 210px;
-  background-color: #6a0883;
+  background-color: #7c0061;
 }
 
 #header img {
@@ -52,6 +101,7 @@ body {
 #cards {
   display: flex;
   align-items: center;
+  margin-top: -100px;
 }
 
 .card {
@@ -60,19 +110,17 @@ body {
   background-color: #fff;
   border-radius: 10px;
   padding: 20px;
-  margin-top: -100px;
   margin-right: 20px;
 }
-
-.card-tittle {
+.card-title {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 
 .in svg {
-  color: #12a45a;
+  color: #12a454;
 }
 
 .out svg {
@@ -80,7 +128,7 @@ body {
 }
 
 .total {
-  background-color: #302f2f;
+  background-color: #474747;
   color: #fff;
   margin-right: 0;
 }
@@ -130,16 +178,16 @@ tbody td svg {
   font-weight: 400;
 }
 
-#addbutton a {
+#addButton a {
   color: #fff;
-  border-radius: 50%; /*deixa qualquer elemento redondo*/
+  border-radius: 50%; /*Deixa qualquer elemento redondo*/
   padding: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-#addbutton {
+#addButton {
   background-color: #12a454;
   border-radius: 50%;
   position: absolute;
@@ -150,6 +198,6 @@ tbody td svg {
   transition: background 2s;
 }
 
-#addbutton:hover {
+#addButton:hover {
   background-color: #0c6434;
 }
