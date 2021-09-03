@@ -1,25 +1,10 @@
-var transactions = [
-    {
-        title: "desenvolvimento",
-        price: 5000,
-        currency: "BRL",
-        type: "entrada",
-        category: "venda",
-        date: "23/07/2021",
-    },
-    {
-        title: "Ifood",
-        price: 20.5,
-        currency: "BRL",
-        type: "saida",
-        category: "alimentação",
-        date: "05/08/2021",
-    }
-];
+var transactions = 
+JSON.parse(localStorage.getItem("@ewallet/transactions"))||[];
 
 var addBtn = document.querySelector("#addButton a");
 var popup = document.querySelector("#popupbackground");
 var closeBtn = document.querySelector("#popup form a");
+var form = document.querySelector("form");
 
 addBtn.addEventListener("click", () => {
     // O que vai acontecer quando clicar no botão adicionar
@@ -30,7 +15,32 @@ addBtn.addEventListener("click", () => {
 closeBtn.addEventListener("click", () => {
     popup.style.display = "none";
     popup.style.transition = "display 5s";
+    form.reset();
 })
+
+form.addEventListener("submit", (event)=>{
+    event.preventDefault();
+    var formData = new FormData(event.target);
+
+    var {title, currency, identifier, price, category} = 
+    Object.fromEntries(formData);
+    
+    var date = new Date().toLocaleDateString();
+
+    var transaction = {
+        title,
+        price: parseFloat(price),
+        category,
+        currency,
+        identifier,
+        id: transactions.length + 1,
+        date
+
+    }
+    transactions.push(transaction)
+    localStorage.setItem("@ewallet/transactions", JSON.stringify(transactions));
+    window.location.reload();
+});
 
 {/* 
      <tr>
@@ -40,6 +50,7 @@ closeBtn.addEventListener("click", () => {
             <td>13/08/2021</td>
      </tr>
  */}
+
 var table = document.querySelector("#table tbody");
 
 transactions.map(transaction => {
